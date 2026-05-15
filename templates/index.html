@@ -1,0 +1,84 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Mrs J Hubben</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="icon" type="image/png"
+    href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+
+<section class="hub-start">
+<div class="logo-wrapper">
+    <img src="{{ url_for('static', filename='logo.png') }}"
+    alt="Mrs J Hubben"
+    class="logo">
+</div>
+    <h1>Välkommen till hubben</h1>
+
+    <p class="intro">
+        Ett tryggt digitalt space för känslor, triggers, självreflektion och personlig utveckling.
+        Här kan du landa i det du känner, förstå dina mönster och välja nästa steg i din egen takt.
+    </p>
+
+    <div class="card">
+        <h2>Vad behöver du just nu?</h2>
+
+        <p>
+            Välj det som känns närmast. Du behöver inte veta exakt vad du behöver innan du börjar.
+            Ibland behöver vi stöd i stunden. Ibland behöver vi reflektera djupare.
+        </p>
+
+        <div class="button-group">
+            <a href="/kanslotracker" class="main-button">
+                Jag behöver stöd nu
+            </a>
+
+            <a href="/pdf_journaling" class="main-button">
+                Jag vill reflektera djupare
+            </a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Här inne kan du börja med två verktyg</h2>
+
+        <div class="tool-grid">
+
+            <div class="tool-box">
+                <h3>Känslotracker</h3>
+                <p>
+                    För dig som vill förstå vad du känner just nu,
+                    vilken nyans känslan har och vad du kan behöva i stunden.
+                </p>
+                <a href="/kanslotracker" class="text-link">Öppna känslotrackern</a>
+            </div>
+
+            <div class="tool-box">
+                <h3>Självreflektionsverktyg</h3>
+                <p>
+                    För dig som vill skapa en PDF med djupgående reflektionsfrågor
+                    inom ett område som känns viktigt för dig just nu.
+                </p>
+                <a href="/pdf_journaling" class="text-link">Öppna reflektionsverktyget</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Kroppen och själen hör ihop</h2>
+
+        <p>
+            Den här hubben är skapad för att ge dig ett lugnt och tydligt rum där både känslor,
+            tankar, kroppens signaler och den inre rösten får ta plats.
+        </p>
+
+        <p>
+            Fler delar kan växa fram här senare, som grounding, självvärde, gränser,
+            energi, meditationer, månadsreflektioner och medlemsmaterial.
+        </p>
+    </div>
+
+</section>

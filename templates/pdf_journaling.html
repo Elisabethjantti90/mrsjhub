@@ -1,0 +1,709 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Självreflektionsverktyg</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="icon" type="image/png"
+    href="{{ url_for('static', filename='favicon.png') }}">
+    <a href="/" class="back-link">← Tillbaka till hubben</a>
+</head>
+ 
+ <h1>Självreflektionsverktyg</h1>
+ <div class="card">
+ <p class="info">
+  <p>
+Känner du dig fast eller vill förstå dig själv lite bättre?
+Detta självreflektionsverktyg skapar en PDF med 10 djupgående frågor inom det område du väljer.
+</p>
+
+<h3>Så fungerar det</h3>
+<ul>
+<li>Välj en kategori som känns relevant just nu</li>
+<li>Klicka på “Skapa PDF”</li>
+<li>Ladda ner dina reflektionsfrågor direkt</li>
+</ul>
+
+<h3>Vad du får</h3>
+<ul>
+<li>Djupgående frågor som hjälper dig sortera tankar och känslor</li>
+<li>En PDF du kan spara och återvända till</li>
+<li>Ett enkelt verktyg för personlig utveckling</li>
+</ul>
+
+<p>
+Vill du ha fler tips inom den kategori du valt kan du fylla i din e-post. 
+PDF:en laddas ner direkt oavsett.<br>
+Vill du ha hjälp att tolka dina svar och få ett nästa steg?<br>
+Ta kontakt via kontaktformuläret och skriva<br>
+TID (vägledning) eller START (coaching).<br>
+Eller skicka ett mail till mrsjbodyandsoul@hotmail.com
+</p>
+  </p></div>
+<div class="card">
+  <label for="kategoriSelect">Kategori:</label>
+  <select id="kategoriSelect">
+    <option value="">– välj kategori –</option>
+    <option value="gränser">Gränser</option>
+    <option value="spegling">Speglingar</option>
+    <option value="triggers">Triggers</option>
+    <option value="känslor">Känslor</option>
+    <option value="ansvar">Ansvar</option>
+    <option value="andligt">Andlighet</option>
+    <option value="intuition">Intuition</option>
+    <option value="självvärde">Självvärde</option>
+    <option value="trygghet">Trygghet</option>
+    <option value="relationer">Relationer</option>
+    <option value="energi">Energi & återhämtning</option>
+    <option value="skam">Skam & skuld</option>
+    <option value="barndomssår">Barndomssår</option>
+    <option value="coping">Copingstrategier</option>
+    <option value="trauma">Traumahantering</option>
+    <option value="konflikt">Konfliktcoachning</option>
+  </select>
+
+  <button type="button" onclick="skapaPdf()">Skapa PDF</button></div>
+<div class="card">
+  <div class="optin">
+  <p class="note">
+    Vill du ha fler tips i den kategori du valt?
+    Kryssa i rutan och fyll i din e-post så sparas du för relevant innehåll.
+  </p>
+
+  <label for="emailInput">E-post:</label>
+  <input id="emailInput" type="email" placeholder="din@email.se" autocomplete="email" />
+</div>
+  <div class="checks">
+    <label>
+      <input type="checkbox" id="tipsConsent" />
+      Ja, jag vill få fler tips i den kategori jag valt via e-post.
+    </label>
+  </div>
+
+  <p class="note" style="font-size:0.95rem;">
+    Genom att kryssa i godkänner du att jag sparar din e-post och vald kategori för att kunna skicka relevant innehåll.
+  </p>
+  
+</div>
+<div id="optinStatus" class="status" role="status" aria-live="polite"></div>
+
+  <!-- jsPDF från CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    const KATEGORIER = {
+
+      "gränser": {
+        rubrik: "Reflektionsfrågor - Gränser",
+        frågor: [
+          "Känns det här bra för mig?",
+          "Vilken gräns vill jag sätta nu?",
+          "Är det här okej för mig på riktigt?",
+          "När gick jag senast över min egen gräns?",
+          "Vad säger min kropp när en gräns blir övertrampad?",
+          "Hur märker jag att jag säger ja men egentligen menar nej?",
+          "Vad är jag rädd ska hända om jag sätter en tydlig gräns?",
+          "Vem har lättast att passera mina gränser - och varför?",
+          "Vad är skillnaden mellan generositet och självutplåning för mig?",
+          "Vilka gränser behöver jag stärka i mina relationer?",
+          "Vilken liten gräns kan jag börja öva på redan idag?",
+          "Vad skulle jag vilja att andra respekterade mer hos mig?",
+          "Vad i mig gör att jag släpper mina gränser när jag är trött eller stressad?",
+          "Vad är en icke-förhandlingsbar gräns för mig?",
+          "Vad är min mjukaste gräns, den jag ofta ignorerar?",
+          "Hur känns det i mig när jag följer min inre gränskompass?",
+          "Var i kroppen sitter mitt 'nej'?",
+          "Hur känns det att stå kvar i en gräns även när någon blir besviken?",
+          "Vilka konsekvenser får det för mig när jag inte sätter gränser?",
+          "Vad behöver jag skydda inom mig just nu?",
+          "När glömmer jag bort att jag också har rättigheter i relationer?",
+          "Hur skulle en dag med sunda gränser se ut för mig?",
+          "Vilka små signaler visar att en gräns är på väg att bli övertrampad?",
+          "Vad betyder självrespekt för mig i praktiken?",
+          "Vad skulle hända om jag satte min gräns lite tidigare än jag brukar?",
+          "Vilka beteenden hos andra har jag ursäktat för länge?",
+          "När märker jag att jag kompromissar bort mig själv?",
+          "Hur känns det när någon verkligen respekterar mina gränser?",
+          "Vad är det viktigaste jag behöver säga nej till just nu?",
+          "Vilken gräns skulle min starkaste framtida version av mig sätta?",
+          "Vad har jag lärt mig om gränser från min barndom?",
+          "Vilka gränser vill jag ha för mitt energiplan?",
+          "Vad i mig gör det svårt att stå kvar i mitt nej?",
+          "Hur hade jag velat att andra satt gränser gentemot mig?",
+          "Vilken gräns är jag redo att äga utan skuld?",
+          "När känner jag att jag läcker energi till andra?",
+          "Vad betyder det för mig att sätta gränser med kärlek?",
+          "Hur ser mitt liv ut när mina gränser är hela och trygga?",
+          "Vad blir möjligt i mitt liv när jag sätter tydliga gränser?"
+        ]
+      },
+
+      "spegling": {
+        rubrik: "Reflektionsfrågor - Speglingar",
+        frågor: [
+          "Vad i den här situationen speglar något i mig?",
+          "Vad hos den andra personen påminner om min egen skuggsida?",
+          "Vad vill denna spegling säga mig just nu?",
+          "Vilken del av mig själv ser jag i den här konflikten?",
+          "I vilka situationer blir jag starkt triggad av andra?",
+          "Påminner det här om något jag själv gör eller har gjort?",
+          "Vad dömer jag hos andra som jag också bär inom mig?",
+          "Vad behöver jag läka för att bli mindre reaktiv i liknande situationer?",
+          "Vilket behov signalerar den här speglingen?",
+          "Vad vill den här situationen lära mig om mig själv?",
+          "Vad händer i mig om jag slutar ta det personligt en stund?",
+          "Känner jag igen känslan från min barndom eller tonår?",
+          "Hur skulle jag bemöta mig själv om jag hade samma beteende?",
+          "Vilken sanning om mig själv undviker jag att se här?",
+          "Är det personen framför mig, eller i min historia som gör ont?",
+          "Vad i mig vill bli sedd genom den här speglingen?",
+          "Vad försöker jag kontrollera när speglingen blir stark?",
+          "Vad hade jag behövt höra som barn i en liknande situation?",
+          "Hur vet jag att en spegling är aktiv i mig?",
+          "Vad i speglingen vill att jag ska växa?",
+          "Vad ser jag hos andra som jag behöver möta i mig själv?",
+          "Vem triggar mig mest? och varför?",
+          "Hur har speglingar hjälpt mig att växa tidigare?",
+          "Vad visar denna spegling om mina omedvetna behov?",
+          "Vilka delar av mig själv brukar jag undvika att möta?",
+          "När har jag känt liknande speglingar tidigare?",
+          "Vad lär jag mig om min självbild i denna situation?",
+          "Vad säger min reaktivitet om min inre trygghet?",
+          "Hur kan jag möta speglingen med nyfikenhet istället för dom?",
+          "Vad vill denna situation avslöja om min självkärlek?",
+          "Vilken gammal smärta vaknar i denna spegling?",
+          "Hur påverkar speglingar min kommunikation?",
+          "Vad är det jag förväntar mig att andra ska ge mig?",
+          "Vad vill mitt högre jag att jag ska förstå här?",
+          "Vilken del av mig känner sig hotad i denna spegling?",
+          "Vad blir möjligt om jag tillåter speglingen att visa mig sanningen?",
+          "Hur kan denna spegling hjälpa mig att läka något djupt?"
+        ]
+      },
+
+      "triggers": {
+        rubrik: "Reflektionsfrågor - Triggers",
+        frågor: [
+          "Vad är det som triggar mig just nu?",
+          "Är min reaktion kopplad till nuet eller till något gammalt?",
+          "Vad i situationen väcker obehag?",
+          "Vad i mig försöker skydda mig genom denna reaktion?",
+          "Vad säger triggern om mina behov just nu?",
+          "Vilken känsla ligger under första lagret av reaktion?",
+          "När kände jag så här första gången?",
+          "Påminner detta om en relation från min barndom?",
+          "Vilken gräns eller vilket värde upplever jag blir övertrampat?",
+          "Vad behöver jag för att känna mig tryggare i denna situation?",
+          "Vad behöver mitt nervsystem, paus, närhet, distans, rörelse?",
+          "Vad skulle jag vilja säga men inte vågar?",
+          "Hur hade jag reagerat om jag kände mig helt trygg?",
+          "Vad försöker min kropp säga mig genom triggern?",
+          "Vilken gammal roll faller jag in i här?",
+          "Vad behöver jag validera i mig själv nu?",
+          "Vilket stöd hade jag behövt tidigare i livet?",
+          "Är min reaktion större än situationen?",
+          "Vad kan jag lära om mig själv genom denna trigger?",
+          "Vilket nästa steg känns snällast mot mig?",
+          "Vilka små signaler dyker upp innan jag triggas helt?",
+          "Vilka kroppsliga reaktioner känner jag först?",
+          "Vad hade hänt om jag pausade innan jag reagerar?",
+          "Vem eller vad triggar mig mest och varför?",
+          "Vad saknar jag när triggern aktiveras?",
+          "Hur skulle jag vilja svara när jag är centrerad?",
+          "Kan jag se en underliggande förlust, rädsla eller sorg?",
+          "Hur vill jag att andra bemöter mig när jag är triggad?",
+          "Vad vill min trigger lära mig?",
+          "Vad försöker reaktionen skydda mig från?",
+          "Vad händer om jag validerar mig själv först?",
+          "Vad är det jag inte vill känna?",
+          "Hur snabbt växer reaktionen? och varför?",
+          "Vilka misstag gör jag ofta när jag är triggad?",
+          "Vad vill jag lära mig av denna trigger?"
+        ]
+      },
+
+      "känslor": {
+        rubrik: "Reflektionsfrågor - Känslor",
+        frågor: [
+          "Vilken känsla känner jag just nu?",
+          "Var i kroppen märker jag känslan tydligast?",
+          "Vad vill känslan säga mig?",
+          "Är denna känsla ny eller välbekant?",
+          "När kände jag så här första gången?",
+          "Vad är jag rädd ska hända om jag stannar i känslan?",
+          "Försöker känslan skydda mig från något?",
+          "Är detta min egen känsla eller någon annans?",
+          "Vilket behov ligger bakom känslan?",
+          "Hur skulle jag bemöta ett barn som kände så här?",
+          "Vad skulle känslan säga om den hade en röst?",
+          "Vad försöker jag kontrollera genom att undvika känslan?",
+          "Vad behöver jag acceptera?",
+          "Vilken känsla vill jag bjuda in bredvid denna?",
+          "När är jag trygg i mitt känsloliv?",
+          "Hur känns det när jag tar min känsla på allvar?",
+          "Vad är det snällaste jag kan göra för mig själv nu?",
+          "Vem skulle jag vilja dela känslan med?",
+          "Hur påverkar känslan mina val?",
+          "Vad vill jag påminna mig själv om när känslan kommer tillbaka?",
+          "Hur känns känslan i min andning?",
+          "Vad vill känslan visa som jag undvikit?",
+          "Vilka tankar skapar mer av känslan?",
+          "Vilken sekundär känsla döljer den första?",
+          "Hur hade denna känsla bemötts i min barndom?",
+          "Vad händer om jag ger känslan mer utrymme?",
+          "Hur känns det i känslan att bli lyssnad på?",
+          "Vad vill känslan att jag ska göra annorlunda?",
+          "Vad behöver jag för att kunna lugna känslan?",
+          "Vilket budskap bär känslan?"
+        ]
+      },
+
+      "ansvar": {
+        rubrik: "Reflektionsfrågor - Ansvar",
+        frågor: [
+          "Vad är faktiskt mitt ansvar i situationen?",
+          "Vad är inte mitt ansvar här?",
+          "Är andras reaktioner mitt ansvar?",
+          "Var har jag lärt mig att bära för mycket ansvar?",
+          "Vad innebär det att ta ansvar för mina egna känslor?",
+          "Hur tar jag ansvar utan att ta över?",
+          "Vilket ansvar önskar jag att den andra tog?",
+          "När tar jag för lite ansvar för mig själv?",
+          "När tar jag för mycket ansvar för andra?",
+          "Hur känns det att bära mer än mitt eget ansvar?",
+          "Vad betyder det att lämna tillbaka ansvar?",
+          "Hur kan jag kommunicera mitt ansvar tydligare?",
+          "Vad vill jag inte längre ta ansvar för?",
+          "Vilket ansvar kan jag släppa idag?",
+          "Vad betyder sund ansvarsfördelning för mig?",
+          "Hur står jag kvar i mitt ansvar med gränser?",
+          "Vad är mitt ansvar i min läkning?",
+          "När har jag blivit skuldbelagd för sådant som inte är mitt?",
+          "Hur vill jag att ansvar ska kännas?",
+          "Vilket ansvar bär jag som jag inte längre vill bära?"
+        ]
+      },
+
+      "andligt": {
+        rubrik: "Reflektionsfrågor - Andlighet",
+        frågor: [
+          "Vad betyder andlighet för mig nu?",
+          "När känner jag mig uppkopplad mot något större?",
+          "Vilka ritualer ger mig inre stillhet?",
+          "Hur kommunicerar min intuition eller guider med mig?",
+          "När känner jag mig hållen i svåra stunder?",
+          "Vad betyder begreppet själ för mig?",
+          "När senast kände jag starkt att något var ett tecken?",
+          "Hur påverkar andlighet mina utmaningar?",
+          "Finns det en praktik jag vill återuppta?",
+          "Vad behöver jag för att lita mer på min andlighet?",
+          "När tvivlar jag mest på det jag känner?",
+          "Hur skulle det se ut om jag hedrade min andlighet dagligen?",
+          "Vilka platser känns andligt hemma?",
+          "Vilka delar av min andlighet vågar jag inte prata om?",
+          "Vad vill min själ säga just nu?",
+          "Hur bjuder jag in mer magi och mening i vardagen?",
+          "Vilket andligt stöd önskar jag att jag haft som ung?",
+          "Vilken erfarenhet har påverkat mig starkast?",
+          "Vad behöver jag släppa för att komma närmare mig själv?",
+          "Hur känns andlig resonans i kroppen?"
+        ]
+      },
+
+      "intuition": {
+        rubrik: "Reflektionsfrågor - Intuition",
+        frågor: [
+          "Hur känns min intuition i kroppen?",
+          "Vad är skillnaden mellan intuition och rädsla för mig?",
+          "När följde jag min magkänsla fullt ut?",
+          "När ignorerade jag intuitionen? och vad hände?",
+          "Vilka situationer gör min inre röst svår att höra?",
+          "Vilka miljöer stärker min intuition?",
+          "Hur ger jag min intuition mer utrymme?",
+          "Vilka tecken brukar jag lägga märke till?",
+          "Hur skulle det se ut om jag litade mer på min första känsla?",
+          "Vad behöver jag för att våga följa vägledningen oftare?",
+          "Vad vet jag innerst inne men vill inte erkänna?",
+          "Vilket beslut är jag tacksam att jag följde intuitionen i?",
+          "När känner jag mig bortkopplad från intuitionen?",
+          "Hur kan jag återknyta när intuitionen är tyst?",
+          "Vad vill intuitionen säga mig just nu?",
+          "Hur har intuitionen skyddat mig?",
+          "Hur känns ett intuitivt ja och nej?",
+          "Vad kan jag testa idag där intuitionen får leda?"
+        ]
+      },
+
+      "självvärde": {
+        rubrik: "Reflektionsfrågor - Självvärde",
+        frågor: [
+          "Vad betyder självvärde för mig?",
+          "När känner jag mig värdefull utan prestation?",
+          "Vilka situationer får mig att tvivla på mitt värde?",
+          "Vem lärde mig att ifrågasätta mitt värde?",
+          "Hur kopplar jag mitt värde till prestation?",
+          "Hur skulle mitt liv se ut om jag trodde att jag var tillräcklig?",
+          "Vilka ord hade jag velat höra som barn?",
+          "Vad behöver jag höra från mig själv idag?",
+          "När behandlar jag mig själv som mindre viktig?",
+          "Vilka relationer stärker mitt värde?",
+          "Vilka relationer tär på mitt värde?",
+          "Vad är jag stolt över hos mig själv?",
+          "Vilka små handlingar visar mig själv respekt?",
+          "Hur pratar jag med mig själv vid misstag?",
+          "Vad förändras om jag möter mig själv som en vän?",
+          "När säger jag ja för att bli omtyckt?",
+          "Vilka gamla berättelser behöver jag skriva om?",
+          "Vad vill jag lova mig själv om mitt värde?"
+        ]
+      },
+
+      "trygghet": {
+        rubrik: "Reflektionsfrågor - Trygghet",
+        frågor: [
+          "Vad betyder trygghet för mig?",
+          "När känner jag mig trygg i mig själv?",
+          "Vilka människor får mig att känna mig tryggare?",
+          "Vilka situationer väcker otrygghet?",
+          "Hur märker jag otrygghet i kroppen?",
+          "Vad saknade jag som barn i trygghet?",
+          "Hur kan jag ge mig själv detta nu?",
+          "Vilka platser känns trygga?",
+          "Hur påverkar trygghet mina relationer?",
+          "Vem håller jag fast vid av rädsla?",
+          "Hur skulle det kännas att skapa trygghet i mig själv?",
+          "Vilka ritualer lugnar mig?",
+          "Vilka gränser gör mig tryggare?",
+          "När litar jag på mig själv?",
+          "Vad påminner jag mig själv om när jag blir rädd?"
+        ]
+      },
+
+      "relationer": {
+        rubrik: "Reflektionsfrågor - Relationer",
+        frågor: [
+          "Vad betyder en trygg relation för mig?",
+          "Vilka relationer ger mig energi?",
+          "Vilka relationer dränerar mig?",
+          "Hur förändras relationer när jag växer?",
+          "Vilka mönster känner jag igen?",
+          "Vilka behov uttrycker jag sällan?",
+          "Vad är svårt att säga till någon jag tycker om?",
+          "När känner jag mig ensam i relationer?",
+          "Vilken roll tar jag oftast?",
+          "Vad behöver jag för att känna mig sedd?",
+          "Hur hanterar jag konflikter?",
+          "Vilka relationer speglar min bästa version?",
+          "Vilka relationer speglar mina sår?",
+          "Vilka relationer håller jag fast vid av rädsla?",
+          "Vilken relation vill jag vårda mer, inklusive mig själv?"
+        ]
+      },
+
+      "energi": {
+        rubrik: "Reflektionsfrågor - Energi & Återhämtning",
+        frågor: [
+          "Hur känns min energinivå just nu?",
+          "Vad drar mest energi?",
+          "Vad fyller mig med energi?",
+          "Lyssnar jag på kroppens signaler om vila?",
+          "När under dagen känner jag mig mest levande?",
+          "Vilka människor ger mig energi?",
+          "Vilka människor drar energi?",
+          "Hur påverkar sömn, mat och rörelse mig?",
+          "Vilka små pauser skulle göra skillnad?",
+          "Vad gör jag när jag är trött men fortsätter?",
+          "Vad kan jag sluta göra som dränerar mig?",
+          "Hur mycket energi går åt till oro?",
+          "Hur känns energibalans i kroppen?"
+        ]
+      },
+
+      "skam": {
+        rubrik: "Reflektionsfrågor - Skam & Skuld",
+        frågor: [
+          "Vad skäms jag över just nu?",
+          "Vems röst hör jag när skammen kommer?",
+          "När började jag känna mycket skam?",
+          "Vilka delar av mig gömmer jag?",
+          "Har jag fått ta ansvar för saker som inte var mitt fel?",
+          "Vad är skillnaden mellan skuld och skam?",
+          "Vad skulle jag säga till ett barn med samma skam?",
+          "Vilka berättelser bär skammen på?",
+          "Hur känns skam i kroppen?",
+          "Vem kan jag dela skam med?",
+          "Vad behöver jag höra för att skammen ska lätta?",
+          "Vilka val styrs av skam?",
+          "Vad vill jag sluta skämmas över?",
+          "Hur kan jag möta min skam med medkänsla?"
+        ]
+      },
+
+      "barndomssår": {
+        rubrik: "Reflektionsfrågor - Barndomssår",
+        frågor: [
+          "Vilket barndomsminne dyker upp när jag mår dåligt?",
+          "Hur bemöttes mina känslor som barn?",
+          "Vilka roller tog jag i familjen?",
+          "Fick jag vara barn eller behövde jag vara vuxen tidigt?",
+          "Vilka behov förbises i min barndom?",
+          "När kände jag mig mest ensam?",
+          "Vilka delar av mig stängde jag av?",
+          "Vad hade jag behövt höra som barn?",
+          "Hur påverkar barndomssår mina relationer idag?",
+          "När reagerar mitt inre barn?",
+          "Vilka situationer får mig att känna mig liten?",
+          "Vilka lojaliteter håller mig kvar i gamla mönster?",
+          "Hur kan jag ge mig själv det jag saknade som barn?"
+        ]
+      },
+
+      "coping": {
+        rubrik: "Reflektionsfrågor - Copingstrategier",
+        frågor: [
+          "Hur hanterar jag starka känslor?",
+          "Vilka strategier använde jag för att överleva som barn?",
+          "Vilka strategier hjälper mig fortfarande?",
+          "Vilka strategier skadar mig idag?",
+          "Flyr jag, fryser jag, kämpar jag eller anpassar jag mig?",
+          "Vad gör jag när jag känner mig överväldigad?",
+          "Vilka beteenden använder jag för att slippa känna?",
+          "Hur har mina strategier räddat mig?",
+          "Hur hindrar de mig idag?",
+          "Vad hade jag behövt istället?",
+          "Vilka nya strategier vill jag öva på?",
+          "Hur kan jag pausa ett gammalt mönster?",
+          "Vilka relationer triggar mina strategier?",
+          "Vad vill jag tacka mina gamla strategier för?",
+          "Vad vill jag släppa nu?"
+        ]
+      },
+
+      "trauma": {
+        rubrik: "Reflektionsfrågor - Traumahantering",
+        frågor: [
+          "Vilka händelser satte djupa spår i mig?",
+          "Hur märks mina trauman i vardagen?",
+          "När reagerar jag starkare än situationen kräver?",
+          "Hur påverkar trauman min trygghet?",
+          "Vilka situationer undviker jag?",
+          "Hur hanterade jag smärta som barn?",
+          "Vilket stöd saknade jag?",
+          "Vad hjälper mig att landa när minnen aktiveras?",
+          "Vilka trygghetspunkter har jag nu?",
+          "Vad är svårt att acceptera i min historia?",
+          "Vad betyder läkning för mig?",
+          "Vilka små steg känns möjliga?",
+          "Vilka relationer triggar gamla minnen?",
+          "Vilken trygghet saknade jag då som jag kan ge mig själv nu?"
+        ]
+      },
+
+      "konflikt": {
+        rubrik: "Reflektionsfrågor - Konfliktcoachning",
+        frågor: [
+          "Hur reagerar jag i konflikt, fly, frys, attack eller anpassning?",
+          "Vad gör konflikter svåra för mig?",
+          "Vilka gamla erfarenheter påverkar mina konflikter?",
+          "Vad är jag rädd ska hända om jag säger min sanning?",
+          "Hur vill jag att konflikter ska kännas?",
+          "Vad är min intention i konflikt?",
+          "Vilka konflikter upprepas i mitt liv?",
+          "Vad behöver jag för att lyssna även när jag är upprörd?",
+          "Hur uttrycker jag behov utan att attackera?",
+          "Vilka gränser behöver jag i konflikt?",
+          "Hur påverkar barndomen min konfliktstil?",
+          "Hur vill jag bli bemött när jag är arg?",
+          "Vilka ord hjälper mig hålla lugnet?",
+          "Finns det en konflikt där jag vill be om förlåtelse?",
+          "Vilken konflikt behöver mest tydlighet just nu?"
+        ]
+      }
+    }; // <-- Här avslutas KATEGORIER
+
+    //<-- BONUS göm status när man byter kategori
+document.getElementById("kategoriSelect")?.addEventListener("change", () => {
+  const statusEl = document.getElementById("optinStatus");
+  if (statusEl) {
+    statusEl.style.display = "none";
+    statusEl.textContent = "";
+    statusEl.classList.remove("is-success", "is-error");
+  }
+});
+    function slumpa(array, antal) {
+      const kopia = [...array];
+      const resultat = [];
+      const max = Math.min(antal, kopia.length);
+
+      for (let i = 0; i < max; i++) {
+        const index = Math.floor(Math.random() * kopia.length);
+        resultat.push(kopia[index]);
+        kopia.splice(index, 1);
+      }
+      return resultat;
+    }
+
+async function skapaPdf() {
+  const select = document.getElementById("kategoriSelect");
+  const kategoriNyckel = select.value;
+
+  if (!kategoriNyckel || !(kategoriNyckel in KATEGORIER)) {
+    alert("Välj en giltig kategori först.");
+    return;
+  }
+
+  const data = KATEGORIER[kategoriNyckel];
+  const rubrik = data.rubrik;
+  const frågor = data.frågor;
+  const slumpade = slumpa(frågor, 10);
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({
+    unit: "mm",
+    format: "a4"
+  });
+
+  let y = 20;
+
+  function addFooter() {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    const footerText = "Mrs J – Body & Soul · www.mrsjbodyandsoul.com";
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const textWidth = doc.getTextWidth(footerText);
+    const x = (pageWidth - textWidth) / 2;
+    doc.text(footerText, x, 285);
+  }
+
+  // Rubrik
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(18);
+  doc.text(rubrik, 20, y);
+  y += 12;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(12);
+
+  const lineHeight = 7;
+
+  slumpade.forEach((fråga, index) => {
+    const nummererad = (index + 1) + ". " + fråga;
+    const maxWidth = 170;
+    const rader = doc.splitTextToSize(nummererad, maxWidth);
+
+    if (y + rader.length * lineHeight > 260) {
+      addFooter();
+      doc.addPage();
+      y = 20;
+    }
+
+    rader.forEach(r => {
+      doc.text(r, 20, y);
+      y += lineHeight;
+    });
+
+    y += 3;
+  });
+
+  addFooter();
+// CTA i själva PDF-dokumentet
+if (y > 225) {
+  addFooter();
+  doc.addPage();
+  y = 20;
+}
+
+y += 8;
+
+doc.setFont("helvetica", "bold");
+doc.setFontSize(15);
+doc.text("Nästa steg", 20, y);
+y += 9;
+
+doc.setFont("helvetica", "normal");
+doc.setFontSize(11);
+
+const ctaText = [
+  "Vill du ha hjälp att förstå dina svar och hitta vägen vidare?",
+  "",
+  "Boka vägledning",
+  "Kort stöd för klarhet och riktning.",
+  "",
+  "Starta coaching",
+  "Långsiktigt stöd för triggers, självvärde, gränser, självkärlek, känlsor och mer.",
+  "",
+  "Boka via: www.mrsjbodyandsoul.com",
+  "Eller ta kontakt med mig på sociala medier eller mail",
+  "Mrsjbodyandsoul@hotmail.com",
+];
+
+ctaText.forEach(rad => {
+  if (y > 260) {
+    addFooter();
+    doc.addPage();
+    y = 20;
+  }
+
+  doc.text(rad, 20, y);
+  y += 7;
+});
+  const filnamn = `reflektionsfragor_${kategoriNyckel}.pdf`;
+  doc.save(filnamn);
+
+// ---- NYTT: spara subscriber i MailerLite om de samtyckt ----
+const tipsConsent = !!document.getElementById("tipsConsent")?.checked;
+
+if (tipsConsent) {
+  const email = (document.getElementById("emailInput")?.value || "").trim();
+
+  if (!email) {
+    alert("Fyll i din e-postadress om du vill få fler tips i den kategori du valt.");
+    return;
+  }
+
+  const payload = {
+    email,
+    kategori: kategoriNyckel,
+    rubrik,
+    tipsConsent: true,
+    createdAt: new Date().toISOString()
+  };
+
+ const statusEl = document.getElementById("optinStatus");
+
+try {
+  const res = await fetch("https://sjalvvardereflektionsverktyg.elisabeth-jantti.workers.dev/reflektionsfragor", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  const text = await res.text();
+
+  if (statusEl) {
+    statusEl.style.display = "block";
+
+    if (res.ok) {
+      statusEl.classList.remove("is-error");
+      statusEl.classList.add("is-success");
+      statusEl.textContent = "Tack. Du är nu med och får tips inom denna kategori.";
+    } else {
+      statusEl.classList.remove("is-success");
+      statusEl.classList.add("is-error");
+      statusEl.textContent = "PDF:en är nedladdad men e-posten kunde inte sparas just nu.";
+      console.warn("Worker fel:", res.status, text);
+    }
+  }
+
+} catch (e) {
+  if (statusEl) {
+    statusEl.style.display = "block";
+    statusEl.classList.remove("is-success");
+    statusEl.classList.add("is-error");
+    statusEl.textContent = "PDF:en är nedladdad men e-posten kunde inte sparas just nu.";
+  }
+  console.warn("Fetch error:", e);
+}
+}
+}
