@@ -544,7 +544,7 @@ document.getElementById("kategoriSelect")?.addEventListener("change", () => {
       return resultat;
     }
 
-async function skapaPdf() {
+window.skapaPdf = async function() {
   const select = document.getElementById("kategoriSelect");
   const kategoriNyckel = select.value;
 
@@ -706,4 +706,5 @@ try {
   console.warn("Fetch error:", e);
 }
 }
-}
+};
+</script>
