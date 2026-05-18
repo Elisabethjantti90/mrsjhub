@@ -43,6 +43,19 @@
     <h2>Din historik</h2>
     <div id="historyList"></div>
   </div>
+<div class="history-actions">
+  <button type="button" onclick="laddaNerHistorik()">
+    Ladda ner historik
+  </button>
+
+  <button type="button" onclick="rensaHistorik()">
+    Rensa historik
+  </button>
+
+  <button type="button" onclick="toggleHistorik()">
+    Visa mer/mindre
+  </button>
+</div>
 
   <script>
     // ------------------------
@@ -564,30 +577,43 @@
     function saveHistory(history) {
       localStorage.setItem("kansloTrackerHistory", JSON.stringify(history));
     }
+let visaAllaHistorikPoster = false;
 
-    function renderHistory() {
-      const history = loadHistory();
-      historyList.innerHTML = "";
+   function renderHistory() {
+  const history = loadHistory();
+  historyList.innerHTML = "";
 
-      if (history.length === 0) {
-        historyList.textContent = "Ingen historik ännu. Börja med att spara en känsla.";
-        return;
-      }
+  if (history.length === 0) {
+    historyList.textContent = "Ingen historik ännu. Börja med att spara en känsla.";
+    return;
+  }
 
-      history.forEach(entry => {
-        const div = document.createElement("div");
-        div.className = "history-item";
+  const historyToShow = visaAllaHistorikPoster
+    ? history
+    : history.slice(0, 5);
 
-        const dateText = new Date(entry.timestamp).toLocaleString("sv-SE");
-        div.innerHTML = `
-          <strong>${entry.feeling}${entry.nuance ? " – " + entry.nuance : ""}</strong>
-          <small>${dateText}</small>
-          ${entry.tip ? `<div>${entry.tip.replace(/\n/g, "<br>")}</div>` : ""}
-          ${entry.note ? `<div><em>${entry.note}</em></div>` : ""}
-        `;
-        historyList.appendChild(div);
-      });
-    }
+  historyToShow.forEach((entry, index) => {
+    const div = document.createElement("div");
+    div.className = "history-item";
+
+    const dateText = new Date(entry.timestamp).toLocaleString("sv-SE");
+
+    div.innerHTML = `
+      <strong>${entry.feeling}${entry.nuance ? " – " + entry.nuance : ""}</strong>
+      <small>${dateText}</small>
+
+      ${entry.tip ? `<div>${entry.tip.replace(/\n/g, "<br>")}</div>` : ""}
+
+      ${entry.note ? `<div><em>${entry.note}</em></div>` : ""}
+
+      <button type="button" onclick="taBortHistorik('${entry.timestamp}')">
+        Ta bort
+      </button>
+    `;
+
+    historyList.appendChild(div);
+  });
+}
 
     // ------------------------
     // Visa tips
@@ -656,6 +682,10 @@
         timestamp: Date.now()
       };
       history.unshift(entry);
+
+      if (history.length > 50) {
+  history.pop();
+}
       saveHistory(history);
       renderHistory();
 
@@ -664,5 +694,90 @@
 
     // Init
     renderHistory();
+    
+
+    // ===== HISTORIK-FUNKTIONER =====
+
+// Max 50 poster i historiken
+function begransaHistorik() {
+  if (historik.length > 50) {
+    historik = historik.slice(0, 50);
+    localStorage.setItem("kansloHistorik", JSON.stringify(historik));
+  }
+}
+
+// Ta bort en enskild historikpost
+function taBortHistorik(timestamp) {
+  let history = loadHistory();
+
+  history = history.filter(
+    entry => entry.timestamp !== timestamp
+  );
+
+  saveHistory(history);
+  renderHistory();
+}
+
+// Rensa all historik
+function rensaHistorik() {
+
+  if (confirm("Vill du rensa hela historiken?")) {
+
+    localStorage.removeItem("kansloTrackerHistory");
+    renderHistory();
+
+  }
+
+}
+
+
+// Visa mer / visa mindre
+
+function toggleHistorik() {
+  visaAllaHistorikPoster = !visaAllaHistorikPoster;
+  renderHistory();
+}
+
+// Ladda ner historik som textfil
+function laddaNerHistorik() {
+  const history = loadHistory();
+
+  if (!history || history.length === 0) {
+    alert("Det finns ingen historik att ladda ner ännu.");
+    return;
+  }
+
+  let text = "Min känslohistorik\n";
+  text += "Skapad i Mrs J Hubben\n\n";
+
+  historyToShow.forEach((entry) => {
+    const dateText = new Date(entry.timestamp).toLocaleString("sv-SE");
+
+    text += `${index + 1}. ${entry.feeling || ""}${entry.nuance ? " – " + entry.nuance : ""}\n`;
+    text += `${dateText}\n\n`;
+
+    if (entry.tip) {
+      text += `Tips:\n${entry.tip}\n\n`;
+    }
+
+    if (entry.note) {
+      text += `Egen reflektion:\n${entry.note}\n\n`;
+    }
+
+    text += "----------------------\n\n";
+  });
+
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "min-kanslohistorik.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
+}
   </script>
 </body>
