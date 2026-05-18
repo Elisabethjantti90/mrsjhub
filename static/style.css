@@ -41,14 +41,14 @@ p{
 
 
 .card{
-    background:#111;
-    border:1px solid #7b5bc7;
-    border-radius:18px;
-    padding:2rem;
-    margin:2rem auto;
-    max-width:1400px;
-    color:#DCA03C;
-    box-shadow: 0 0 12px rgba(123, 91, 199, 0.15);
+  background:#000;
+  border:1px solid #7b5bc7;
+  border-radius:18px;
+  padding:2rem;
+  margin:2rem auto;
+  max-width:1400px;
+  color:#DCA03C;
+  box-shadow: 0 0 12px rgba(123, 91, 199, 0.15);
 }
 .card:hover{
     border-color:#8e6de0;
