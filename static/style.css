@@ -394,3 +394,19 @@ p{
         margin-top:0.5rem;
     }
 }
+
+button {
+  background: #111;
+  color: #DCA03C;
+  border: 1px solid #6d4dbb;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #6d4dbb;
+  color: #fff;
+}
