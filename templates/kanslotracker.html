@@ -606,9 +606,7 @@ let visaAllaHistorikPoster = false;
 
       ${entry.note ? `<div><em>${entry.note}</em></div>` : ""}
 
-      <button type="button" onclick="taBortHistorik('${entry.timestamp}')">
-        Ta bort
-      </button>
+      <button type="button" onclick="taBortHistorik('${entry.timestamp}')">Ta bort</button>
     `;
 
     historyList.appendChild(div);
@@ -710,9 +708,7 @@ function begransaHistorik() {
 function taBortHistorik(timestamp) {
   let history = loadHistory();
 
-  history = history.filter(
-    entry => entry.timestamp !== timestamp
-  );
+  history = history.filter(entry => String(entry.timestamp) !== String(timestamp));
 
   saveHistory(history);
   renderHistory();
