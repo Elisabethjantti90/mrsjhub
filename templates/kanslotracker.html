@@ -750,7 +750,7 @@ function laddaNerHistorik() {
   let text = "Min känslohistorik\n";
   text += "Skapad i Mrs J Hubben\n\n";
 
-  historyToShow.forEach((entry) => {
+  history.forEach((entry) => {
     const dateText = new Date(entry.timestamp).toLocaleString("sv-SE");
 
     text += `${index + 1}. ${entry.feeling || ""}${entry.nuance ? " – " + entry.nuance : ""}\n`;
