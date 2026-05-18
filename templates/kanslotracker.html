@@ -753,7 +753,7 @@ function laddaNerHistorik() {
   history.forEach((entry) => {
     const dateText = new Date(entry.timestamp).toLocaleString("sv-SE");
 
-    text += `${index + 1}. ${entry.feeling || ""}${entry.nuance ? " – " + entry.nuance : ""}\n`;
+    text += `• ${entry.feeling || ""}${entry.nuance ? " – " + entry.nuance : ""}\n`;
     text += `${dateText}\n\n`;
 
     if (entry.tip) {
