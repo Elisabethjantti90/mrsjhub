@@ -1,19 +1,19 @@
 body{
     background:#000;
-    color:#d1b07a;
+    color:#EAB75F;
     font-family:Arial,sans-serif;
     margin:0;
     padding:2rem;
-     max-width:1400px;
+    max-width:1400px;
     margin:auto;
 }
 
 h1{
-    color:#b8924f;
+    color:#EAB75F;
 }
 
 p{
-    color:#d1b07a;
+    color:#EAB75F;
     line-height:1.7;
 }
 
@@ -25,7 +25,7 @@ p{
 }
 
 .main-button{
-    background:#b8924f;
+    background:#EAB75F;
     color:#000;
     padding:1rem 2rem;
     text-decoration:none;
@@ -38,8 +38,6 @@ p{
     opacity:0.85;
 }
 
-
-
 .card{
   background:#000;
   border:1px solid #7b5bc7;
@@ -47,137 +45,136 @@ p{
   padding:2rem;
   margin:2rem auto;
   max-width:1400px;
-  color:#DCA03C;
+  color:#EAB75F;
   box-shadow: 0 0 12px rgba(123, 91, 199, 0.15);
 }
+
 .card:hover{
     border-color:#8e6de0;
 }
 
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color:#EAB75F;
+}
 
-    select, button, textarea {
-      font: inherit;
-    }
+select, button, textarea {
+  font: inherit;
+}
 
-    select, textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin-bottom: 0.75rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
+select, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
 
-    button {
-      border: none;
-      border-radius: 999px;
-      padding: 0.5rem 1.1rem;
-      cursor: pointer;
-      margin-right: 0.5rem;
-    }
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
 
-    button.primary {
-      background: #6b4bb8;
-      color: white;
-    }
+button.primary {
+  background: #6b4bb8;
+  color: white;
+}
 
-    button.secondary {
-      background: #eee3ff;
-      color: #3a2470;
-    }
+button.secondary {
+  background: #eee3ff;
+  color: #3a2470;
+}
 
-    #tipText {
-      margin: 0.75rem 0;
-      font-style: italic;
-      white-space: pre-wrap;
-    }
+#tipText {
+  margin: 0.75rem 0;
+  font-style: italic;
+  white-space: pre-wrap;
+  color:#EAB75F;
+}
 
-    .history-item {
-      margin-bottom: 0.5rem;
-      padding: 0.5rem 0.75rem;
-      border-bottom: 1px solid #eee;
-    }
+.history-item {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #EAB75F;
+}
 
-    .history-item small {
-      display: block;
-      color: #666;
-    }
+.history-item small {
+  display: block;
+  color: #EAB75F;
+}
 
+/* Gör hela sektionen svart från kant till kant */
+#reflektionsfragor-pdf {
+  background-color: #000;
+  color: #EAB75F;
+  width: 100%;
+  padding: 3rem 1rem;
+  margin: 0; 
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
 
-    
+#reflektionsfragor-pdf h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #EAB75F;
+}
 
+#reflektionsfragor-pdf .info {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  color: #EAB75F;
+}
 
+#reflektionsfragor-pdf label {
+  font-weight: 600;
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+  color: #EAB75F;
+}
 
-    /* Gör hela sektionen svart från kant till kant */
-  #reflektionsfragor-pdf {
-    background-color: #000; /* helt svart */
-    color: #DCA03C; /* guld text */
-    width: 100%;
-    padding: 3rem 1rem;
-    margin: 0; 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  }
+/* Dropdown */
+#reflektionsfragor-pdf select {
+  padding: 0.6rem 1rem;
+  margin-right: 0.5rem;
+  font-size: 1.05rem;
+  border-radius: 6px;
+  background-color: #222;
+  color: #EAB75F;
+  border: 1px solid #444;
+}
 
-  #reflektionsfragor-pdf h1 {
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #DCA03C;
-  }
+/* Knapp i guld */
+#reflektionsfragor-pdf button {
+  padding: 0.6rem 1.2rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+  background-color: #EAB75F;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+}
 
-  #reflektionsfragor-pdf .info {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-    color: #DCA03C;
-  }
+#reflektionsfragor-pdf button:hover {
+  opacity: 0.9;
+}
 
-  #reflektionsfragor-pdf label {
-    font-weight: 600;
-    margin-right: 0.5rem;
-    font-size: 1.1rem;
-    color: #DCA03C;
-  }
+#reflektionsfragor-pdf .note {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  opacity: 0.85;
+  color: #EAB75F;
+}
 
-  /* Dropdown */
-  #reflektionsfragor-pdf select {
-    padding: 0.6rem 1rem;
-    margin-right: 0.5rem;
-    font-size: 1.05rem;
-    border-radius: 6px;
-    background-color: #222;
-    color: #DCA03C;
-    border: 1px solid #444;
-  }
-
-  /* Knapp i din guldiga färg */
-  #reflektionsfragor-pdf button {
-    padding: 0.6rem 1.2rem;
-    font-size: 1.05rem;
-    cursor: pointer;
-    background-color: #DCA03C; /* din signature gold */
-    color: #000;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-  }
-
-  #reflektionsfragor-pdf button:hover {
-    opacity: 0.9;
-  }
-
-  #reflektionsfragor-pdf .note {
-    margin-top: 1.5rem;
-    font-size: 1rem;
-    opacity: 0.85;
-    color: #DCA03C;
-  }
-  #reflektionsfragor-pdf .optin {
+#reflektionsfragor-pdf .optin {
   margin-top: 1.5rem;
   max-width: 520px;
 }
@@ -188,7 +185,7 @@ p{
   margin-top: 0.4rem;
   border-radius: 6px;
   background: #222;
-  color: #DCA03C;
+  color: #EAB75F;
   border: 1px solid #444;
 }
 
@@ -202,7 +199,9 @@ p{
   font-weight: 500;
   font-size: 1rem;
   margin-right: 0;
+  color:#EAB75F;
 }
+
 #reflektionsfragor-pdf .status{
   margin-top: 1rem;
   max-width: 520px;
@@ -210,48 +209,46 @@ p{
   border-radius: 8px;
   border: 1px solid #444;
   background: #111;
-  color: #DCA03C;
-  display: none; /* visas bara när vi har text */
+  color: #EAB75F;
+  display: none;
   line-height: 1.4;
 }
 
 #reflektionsfragor-pdf .status.is-success{
-  border-color: #DCA03C;
+  border-color: #EAB75F;
 }
 
 #reflektionsfragor-pdf .status.is-error{
   border-color: #a55;
   color: #ffd1d1;
 }
-/* ===== TIGHTARE TEXTSPACING (tar bort stora gap) ===== */
+
+/* ===== TIGHTARE TEXTSPACING ===== */
 #reflektionsfragor-pdf p{
   margin: 0 0 0.8rem 0 !important;
+  color:#EAB75F;
 }
 
 #reflektionsfragor-pdf h3{
   margin: 1.1rem 0 0.6rem 0 !important;
+  color:#EAB75F;
 }
 
 #reflektionsfragor-pdf ul,
 #reflektionsfragor-pdf ol{
-  margin: 0.2rem 0 0.9rem 1.2rem !important; /* vänster = indrag */
+  margin: 0.2rem 0 0.9rem 1.2rem !important;
   padding: 0 !important;
 }
 
 #reflektionsfragor-pdf li{
   margin: 0.25rem 0 !important;
+  color:#EAB75F;
 }
 
-/* Om du vill ha lite lugnare radavstånd också */
 #reflektionsfragor-pdf p,
 #reflektionsfragor-pdf li{
   line-height: 1.45;
 }
-
-
-
-
-
 
 .button-group{
     display:flex;
@@ -275,10 +272,6 @@ p{
     transform:translateY(-2px);
 }
 
-
-
-
-
 .hub-start{
     max-width:1400px;
     margin:0 auto;
@@ -290,6 +283,7 @@ p{
     font-size:1.15rem;
     line-height:1.7;
     margin-bottom:2rem;
+    color:#EAB75F;
 }
 
 .tool-grid{
@@ -303,20 +297,20 @@ p{
     border:1px solid #4f378f;
     border-radius:16px;
     padding:1.5rem;
-    background:#0b0b0b;
+    background:#000;
+    color:#EAB75F;
 }
 
 .text-link{
-    color:#b8924f;
+    color:#EAB75F;
     font-weight:700;
     text-decoration:none;
 }
 
 .text-link:hover{
-    color:#d6b46d;
+    color:#EAB75F;
+    opacity:0.85;
 }
-
-
 
 .logo-wrapper{
     margin-bottom:2rem;
@@ -329,7 +323,7 @@ p{
 }
 
 .back-link{
-    color:#b8924f;
+    color:#EAB75F;
     text-decoration:none;
     display:inline-block;
     margin-bottom:1.5rem;
@@ -397,7 +391,7 @@ p{
 
 button {
   background: #111;
-  color: #DCA03C;
+  color: #EAB75F;
   border: 1px solid #6d4dbb;
   border-radius: 8px;
   padding: 0.7rem 1.2rem;
