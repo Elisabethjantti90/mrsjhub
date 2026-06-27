@@ -1,0 +1,506 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Nervsystemscheck</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="icon" type="image/png"
+    href="{{ url_for('static', filename='favicon.png') }}">
+    <a href="/" class="back-link">← Tillbaka till hubben</a>
+</head>
+
+<body>
+  <h1>Nervsystemscheck 💛</h1>
+
+  <p>
+  Svara på frågorna för din egen skull och utifrån där du är just nu.
+  Det här verktyget handlar inte om rätt eller fel svar, utan om att börja förstå
+  dina egna mönster, behov och reaktioner lite tydligare.<br><br>
+
+  När du sparar din historik kan du gå tillbaka och se hur nervsystemet,
+  tankarna och känslorna förändras över tid. Ibland blir det lättare att förstå sig själv
+  när man ser helheten och inte bara stunden man är i just nu.
+</p>
+
+  <div class="card">
+    <label for="nervsystem">Hur känns ditt nervsystem just nu?</label>
+    <select id="feelingSelect">
+      <option value="">– Välj –</option>
+      <option value="Överväldigad">Överväldigat</option>
+      <option value="Avstängd">Avstängt</option>
+      <option value="Rastlös">Rastlöst</option>
+      <option value="Stressat">Stressat</option>
+      <option value="Tomt">Tomt</option>
+      <option value="Spänt">Spänt</option>
+      <option value="Känslosamt">Känslosamt</option>
+      <option value="Avslappnat">Avslappnat</option>
+    </select>
+
+    <label for="questionOne">
+  Hur känns kroppen?
+</label>
+
+<div class="radio-group">
+  <label>
+    <input type="radio" name="questionone" value="Spänd">
+    Spänd
+  </label>
+  <label>
+    <input type="radio" name="questionone" value="Trött">
+    Trött
+  </label>
+  <label>
+    <input type="radio" name="questionone" value="Kryper i kroppen">
+    Kryper i kroppen
+  </label>
+<label>
+    <input type="radio" name="questionone" value="Avstängd">
+    Avstängd
+  </label>
+  <label>
+    <input type="radio" name="questionone" value="Värker">
+    Värker
+  </label>
+</div>
+    <label for="questionTwo">
+  Har du svårt att varva ner kroppen och nervsystemet?
+</label>
+
+<div class="radio-group">
+  <label>
+    <input type="radio" name="questionTwo" value="Ja">
+    Ja
+  </label>
+  <label>
+    <input type="radio" name="questionTwo" value="Lite">
+    Lite
+  </label>
+  <label>
+    <input type="radio" name="questionTwo" value="Nej">
+    Nej
+  </label>
+
+</div>
+<label for="questionThree">
+  Hur är din andning?
+</label>
+
+<div class="radio-group">
+
+  <label>
+    <input type="radio" name="questionThree" value="Hård">
+    Hård
+  </label>
+  <label>
+    <input type="radio" name="questionThree" value="Ansträngd">
+    Ansträngd
+  </label>
+  <label>
+    <input type="radio" name="questionThree" value="Normal">
+    Normal
+  </label>
+  <label>
+    <input type="radio" name="questionThree" value="Långsam">
+    Långsam
+  </label>
+
+</div>
+</div>
+<p class="small-text">
+Du behöver inte förstå allt direkt. Lägg bara märke till vad som händer i kroppen och tankarna just nu.
+</p>
+<div class="card">
+<label for="questionFour">
+  Hur går tankarna just nu?
+</label>
+
+<div class="radio-group">
+  <label>
+    <input type="radio" name="questionFour" value="Snabbt">
+    Snabbt
+  </label>
+  <label>
+    <input type="radio" name="questionFour" value="Tomt">
+    Tomt
+  </label>
+  <label>
+    <input type="radio" name="questionFour" value="Normalt">
+    Normalt
+  </label>
+  <label>
+    <input type="radio" name="questionFour" value="Långsamt">
+    Långsamt
+  </label>
+
+</div>
+<label for="questionFive">
+  Har du svårt att vara närvarande i det du gör just nu?
+</label>
+
+<div class="radio-group">
+
+  <label>
+    <input type="radio" name="questionFive" value="Ja">
+    Ja
+  </label>
+
+  <label>
+    <input type="radio" name="questionFive" value="Kanske lite">
+    Kanske lite
+  </label>
+  <label>
+    <input type="radio" name="questionFive" value="Nej">
+    Nej
+  </label>
+
+</div>
+</div>
+<p class="small-text">
+Ibland blir våra behov tydligare när vi stannar upp en stund och lyssnar in oss själva.
+</p>
+
+<div class="card">
+<label for="questionSix">
+  Vad känner du är det viktigaste behovet för dig just nu?
+</label>
+
+<div class="radio-group">
+<textarea id="questionSeven" rows="5" placeholder="Kan vara en kram, kopp kaffe, fuldansa, vila, trygghet och så vidare..."></textarea>
+</div>
+
+<label for="questionSeven">
+  Behöver du trygghet, vila rörelse eller stöd?
+</label>
+  <label>
+    <input type="radio" name="questionSeven" value="Vila">
+    Vila
+  </label>
+
+  <label>
+    <input type="radio" name="questionSeven" value="Trygghet">
+    Trygghet
+  </label>
+  <label>
+    <input type="radio" name="questionSeven" value="Rörelse">
+    Rörelse
+  </label>
+  <label>
+    <input type="radio" name="questionSeven" value="Stöd">
+    Stöd
+  </label>
+
+<label for="questionEight">
+  Fly, Fight eller Freeze?
+</label>
+<div class="radio-group">
+  <label>
+    <input type="radio" name="questionEight" value="Fly">
+    Fly
+  </label>
+  <label>
+    <input type="radio" name="questionEight" value="Fight">
+    Fight
+  </label>
+  <label>
+    <input type="radio" name="questionEight" value="Freeze">
+    Freeze
+  </label>
+</div>
+
+<label for="questionNine">
+  Vill du fly och dra dig undan eller vara nära och tillsammans med andra?
+</label>
+<div class="radio-group">
+
+  <label>
+    <input type="radio" name="questionNine" value="Dra mig undan">
+    Dra mig undan
+  </label>
+  <label>
+    <input type="radio" name="questionNine" value="Vara nära">
+    Vara nära
+  </label>
+</div>
+
+
+<label for="questionTen">
+  Känner du dig överväldigad eller lättirriterad?
+</label>
+
+<div class="radio-group">
+
+  <label>
+    <input type="radio" name="questionTen" value="Överväldigad">
+    överväldigad
+  </label>
+
+  <label>
+    <input type="radio" name="questionTen" value="Lättirriterad">
+    Lättirriterad
+  </label>
+</div>
+</div>
+<div class="card">
+<label for="questionEleven">
+  Känner du dig tom, känslomässigt avstängd eller ensam?
+</label>
+<div class="radio-group">
+  <label>
+    <input type="radio" name="questionEleven" value="Tom">
+    Tom
+  </label>
+
+  <label>
+    <input type="radio" name="questionEleven" value="Känslomässigt avstängd">
+    Känslomässigt avstängd
+  </label>
+  <label>
+    <input type="radio" name="questionEleven" value="Ensam">
+    Ensam
+  </label>
+</div>
+
+<label for="extraThoughts">
+  Vill du skriva något mer?
+</label>
+<textarea id="extraThoughts" rows="3" placeholder="Fri text... (valfritt)"></textarea>
+</div>
+
+    <button class="secondary" id="saveBtn">Spara i historik</button>
+
+  </div>
+</div>
+  <div class="card">
+    <h2>Din historik</h2>
+    <div id="historyList"></div>
+  </div>
+<div class="history-actions">
+  <button type="button" onclick="laddaNerHistorik()">
+    Ladda ner historik
+  </button>
+
+  <button type="button" onclick="rensaHistorik()">
+    Rensa historik
+  </button>
+
+  <button type="button" onclick="toggleHistorik()">
+    Visa mer/mindre
+  </button>
+</div>
+<div id="nervsystemTips" class="status"></div>
+<script>
+const STORAGE_KEY = "nervsystemHistory";
+let visaAllaHistorikPoster = false;
+
+const saveBtn = document.getElementById("saveBtn");
+const historyList = document.getElementById("historyList");
+
+function loadHistory() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return [];
+
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    console.error("Kunde inte läsa nervsystemshistorik:", e);
+    return [];
+  }
+}
+
+function saveHistory(history) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+}
+
+function getRadioValue(name) {
+  const checked = document.querySelector(`input[name="${name}"]:checked`);
+  return checked ? checked.value : "";
+}
+
+function renderHistory() {
+  const history = loadHistory();
+  historyList.innerHTML = "";
+
+  if (history.length === 0) {
+    historyList.textContent = "Ingen historik ännu. Börja med att spara en nervsystemscheck.";
+    return;
+  }
+
+  const historyToShow = visaAllaHistorikPoster ? history : history.slice(0, 5);
+
+  historyToShow.forEach((entry) => {
+    const div = document.createElement("div");
+    div.className = "history-item";
+
+    const dateText = new Date(entry.timestamp).toLocaleString("sv-SE");
+
+    div.innerHTML = `
+      <strong>${entry.nervsystem || "Nervsystemscheck"}</strong>
+      <small>${dateText}</small>
+
+      <div><strong>Hur känns kroppen?</strong> ${entry.questionOne || "-"}</div>
+      <div><strong>Har du svårt att varva ner kroppen och nervsystemet?</strong> ${entry.questionTwo || "-"}</div>
+      <div><strong>hur är din andning?</strong> ${entry.questionThree || "-"}</div>
+      <div><strong>Hur går tankarna just nu?</strong> ${entry.questionFour || "-"}</div>
+      <div><strong>Har du svårt att vara närvarande i det du gör just nu?</strong> ${entry.questionFive || "-"}</div>
+      <div><strong>Vad känner du är det viktigaste behovet för dig just nu?</strong> ${entry.questionSix || "-"}</div>
+      <div><strong>Behöver du trygghet, vila, rörelse eller stöd?</strong> ${entry.questionSeven || "-"}</div>
+      <div><strong>Fly, fight och freeze?</strong> ${entry.questionEight || "-"}</div>
+      <div><strong>Känner du för att fly och dra dig undan eller vara nära och tilsammans med någon?</strong> ${entry.questionNine || "-"}</div>
+      <div><strong>Är du överväldigad eller lättirriterad?</strong> ${entry.questionTen || "-"}</div>
+      <div><strong>känner du dig tom, känslomässigt avstängd eller ensam?</strong> ${entry.questionEleven || "-"}</div>
+      
+
+      ${entry.extraThoughts ? `<div><em>${entry.extraThoughts}</em></div>` : ""}
+  ${entry.tips && entry.tips.length > 0 ? `
+  <div class="status is-success" style="display:block; margin-top:1rem;">
+    <strong>Mjukt nästa steg:</strong><br><br>
+    ${entry.tips.map(tip => `• ${tip}`).join("<br><br>")}
+  </div>
+` : ""}
+      <button type="button" onclick="taBortHistorik('${entry.timestamp}')">Ta bort</button>
+    `;
+
+    historyList.appendChild(div);
+  });
+}
+
+saveBtn.addEventListener("click", () => {
+  const nervsystem = document.getElementById("feelingSelect").value;
+
+  if (!nervsystem) {
+    alert("Välj hur nervsystemet känns innan du sparar.");
+    return;
+  }
+
+  const history = loadHistory();
+
+  const entry = {
+    nervsystem,
+    questionOne: getRadioValue("questionone"),
+    questionTwo: getRadioValue("questionTwo"),
+    questionThree: getRadioValue("questionThree"),
+    questionFour: getRadioValue("questionFour"),
+    questionFive: getRadioValue("questionFive"),
+    questionSix: getRadioValue("questionSix"),
+    questionSeven: document.getElementById("questionSeven").value.trim(),
+    questionEight: getRadioValue("questionEight"),
+    questionNine: getRadioValue("questionNine"),
+    questionTen: getRadioValue("questionTen"),
+    questionEleven: getRadioValue("questionEleven"),
+    extraThoughts: document.getElementById("extraThoughts").value.trim(),
+    timestamp: Date.now()
+  };
+  
+  entry.tips = skapaNervsystemsTips(entry);
+  history.unshift(entry);
+
+  if (history.length > 50) {
+    history.pop();
+  }
+
+  saveHistory(history);
+  renderHistory();
+
+  document.getElementById("questionSeven").value = "";
+  document.getElementById("extraThoughts").value = "";
+});
+
+function taBortHistorik(timestamp) {
+  let history = loadHistory();
+  history = history.filter(entry => String(entry.timestamp) !== String(timestamp));
+  saveHistory(history);
+  renderHistory();
+}
+
+function rensaHistorik() {
+  if (confirm("Vill du rensa hela nervsystemshistoriken?")) {
+    localStorage.removeItem(STORAGE_KEY);
+    renderHistory();
+  }
+}
+
+function toggleHistorik() {
+  visaAllaHistorikPoster = !visaAllaHistorikPoster;
+  renderHistory();
+}
+
+function laddaNerHistorik() {
+  const history = loadHistory();
+
+  if (!history || history.length === 0) {
+    alert("Det finns ingen historik att ladda ner ännu.");
+    return;
+  }
+
+  let text = "Min nervsystemshistorik\n";
+  text += "Skapad i Mrs J Hubben\n\n";
+
+  history.forEach((entry) => {
+    const dateText = new Date(entry.timestamp).toLocaleString("sv-SE");
+
+    text += `Nervsystem: ${entry.nervsystem || ""}\n`;
+    text += `${dateText}\n\n`;
+
+    text += `Hur känns kroppen ${entry.questionOne || "-"}\n`;
+    text += `Har du svårt att varva ner kroppen och nervsystemet? ${entry.questionTwo || "-"}\n`;
+    text += `hur är din andning? ${entry.questionThree || "-"}\n`;
+    text += `Hur går tankarna just nu? ${entry.questionFour || "-"}\n`;
+    text += `Har du svårt att vara närvarande i det du gör just nu? ${entry.questionFive || "-"}\n`;
+    text += `Vad känner du är det viktigaste behovet för dig just nu? ${entry.questionSix || "-"}\n`;
+    text += `Behöver du trygghet, vila, rörelse eller stöd? ${entry.questionSeven || "-"}\n`;
+    text += `Fly, fight och freeze? ${entry.questionEight || "-"}\n`;
+    text += `Känner du för att fly och dra dig undan eller vara nära och tilsammans med någon? ${entry.questionNine || "-"}\n`;
+    text += `Är du överväldigad eller lättirriterad? ${entry.questionTen || "-"}\n`;
+    text += `känner du dig tom, känslomässigt avstängd eller ensam? ${entry.questionEleven || "-"}\n`;
+
+    if (entry.extraThoughts) {
+      text += `Egen reflektion:\n${entry.extraThoughts}\n\n`;
+    }
+
+    text += "----------------------\n\n";
+  });
+
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "min-nervsystemshistorik.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
+}
+
+renderHistory();
+
+function skapaNervsystemsTips(entry) {
+  const tips = [];
+
+  if (entry.questionSeven === "Stöd") {
+    tips.push("Du har valt stöd. Det kan vara ett tecken på att du inte behöver bära allt själv just nu. Om du vill kan coaching eller vägledning vara ett nästa steg.");
+  }
+
+  if (entry.questionSeven === "Trygghet" || entry.questionTen === "Överväldigad") {
+    tips.push("När trygghet eller överväldigande är starkt kan radikal acceptans, medveten närvaro eller att förbättra nuet vara hjälpsamma verktyg.");
+  }
+
+  if (entry.questionEigth === "Fly" || entry.questionThree === "Ansträngd") {
+    tips.push("Om du vill fly eller om du känner dig avstängd kan grounding vara ett mjukt första steg. Testa att känna fötterna mot golvet eller nämna fem saker du ser.");
+  }
+
+  if (entry.questionOne === "Kryper i kroppen" || entry.questionTen === "Lättirriterad") {
+    tips.push("Om det kryper i kroppen eller du känner dig lättirriterad kan rörelse hjälpa. Skaka loss armarna, gå en kort stund eller få ut energin på ett tryggt sätt.");
+  }
+
+  return tips;
+}
+
+const tips = skapaNervsystemsTips(entry);
+entry.tips = tips;
+
+</script>
+
+</body>
