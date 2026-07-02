@@ -1,6 +1,6 @@
 <head>
     <meta charset="UTF-8">
-    <title>Känslotracker</title>
+    <title>Triggers</title>
 
     <link rel="stylesheet"
     href="{{ url_for('static', filename='style.css') }}">
@@ -15,8 +15,8 @@
 
 <p class="info">
   <p>
-En trigger betyder inte att du är svag eller överreagerar.
-Ibland reagerar nervsystemet på något som påminner om tidigare upplevelser, gamla känslor eller roller vi lärt oss att ta.
+En trigger betyder inte att du är svag eller överreagerar.<br>
+Ibland reagerar nervsystemet på något som påminner om tidigare upplevelser, gamla känslor eller roller vi lärt oss att ta.<br>
 Kroppen försöker ofta skydda oss långt innan det logiska tänkandet hinner förstå vad som händer.
 </p>
 
@@ -40,12 +40,115 @@ Kroppen försöker ofta skydda oss långt innan det logiska tänkandet hinner f�
 
   <div class="trigger-content">
     <p>Vilken situation triggade mig?</p>
+    <textarea id="extraThoughts" rows="3" placeholder="Skriv om situationen"></textarea>
     <p>Vad väckte den i mig?</p>
+    <textarea id="extraThoughts" rows="3" placeholder="Vad väcktes i mig?"></textarea>
     <p>Vad kände jag i kroppen?</p>
+    <textarea id="extraThoughts" rows="3" placeholder="Vad och vart kändes det i kroppen?"></textarea>
+    <p>Vad tänkte jag om situationen?</p> 
+    <textarea rows="3" placeholder="Vilka tankar dök upp direkt?"></textarea>
+    <p>Vad gjorde jag direkt efter triggern?</p>
+    <textarea rows="3" placeholder="Hur reagerade jag i stunden?"></textarea>
+  </div>
+
+</div>
+
+<div class="trigger-box">
+
+  <button class="trigger-toggle">
+    Steg 2 – Vilken roll tog jag?
+  </button>
+
+  <div class="trigger-content">
+    <label class="role-option">
+  <input type="checkbox" name="roller" value="Räddaren">
+  <span>Räddaren</span>
+</label>
+<p>Tar ofta ansvar för andras känslor och försöker lösa situationer för att skapa lugn eller undvika konflikt.</p>
+
+<label class="role-option">
+  <input type="checkbox" name="roller" value="Den tysta">
+  <span>Den tysta</span>
+</label>
+<p>Drar sig undan, håller tillbaka sina känslor eller säger inget för att skydda sig själv eller undvika att bli sårad.</p>
+
+<label class="role-option">
+  <input type="checkbox" name="roller" value="Den duktiga">
+  <span>Den duktiga</span>
+</label>
+<p>Försöker göra rätt, prestera eller vara till lags för att känna sig trygg, uppskattad eller tillräcklig.</p>
+
+<label class="role-option">
+  <input type="checkbox" name="roller" value="Den som analyserar allt">
+  <span>Den som analyserar allt</span>
+</label>
+<p>Försöker förstå varje detalj och tänka igenom allt för att få kontroll och minska osäkerhet eller obehag.</p>
+
+<label class="role-option">
+  <input type="checkbox" name="roller" value="Den som flyr">
+  <span>Den som flyr</span>
+</label>
+<p>Undviker situationer, känslor eller konflikter genom att dra sig undan, stänga av eller vilja komma bort från det som känns jobbigt.</p>
+
+<label class="role-option">
+  <input type="checkbox" name="roller" value="Den som tar ansvar för allt">
+  <span>Den som tar ansvar för allt</span>
+</label>
+<p>Tar ofta på sig skuld, ansvar eller press även för sådant som egentligen inte ligger på ens egna axlar.</p>
+
+<label class="role-option">
+  <input type="checkbox" name="roller" value="Den övergivna">
+  <span>Den övergivna</span>
+</label>
+<p>Kan känna stark rädsla för avstånd, avvisande eller att bli lämnad och reagerar ofta utifrån den rädslan.</p>
+
+<label class="role-option">
+  <input type="checkbox" name="roller" value="Den ilskna">
+  <span>Den ilskna</span>
+</label>
+<p>Reagerar med irritation, försvar eller ilska när något känns hotfullt, orättvist eller känslomässigt smärtsamt.</p>
+</div>
+</div>
+
+<div class="trigger-box">
+
+  <button class="trigger-toggle">
+    Steg 3 – Är det nytt eller gammalt?
+  </button>
+
+  <div class="trigger-content">
+    <p>Har jag känt så här tidigare i livet?</p>
+    <textarea id="extraThoughts" rows="3" placeholder="Känner jag igen det här?"></textarea>
+    <p>Påminner situationen om något?</p>
+    <textarea id="extraThoughts" rows="3" placeholder="Blev jag påmind om något?"></textarea>
+    <p>Vem behövde jag vara som barn för att känna mig trygg?</p>
+    <textarea id="extraThoughts" rows="3" placeholder="Vem behövde jag vara?"></textarea>
+    <p>Vad hade jag behövt höra eller få då som jag inte fick?</p> 
+    <textarea rows="3" placeholder="Vad hade jag behövt då?"></textarea>
+    <p>Reagerar jag på det som händer nu eller på något det väcker från förr?</p>
+    <textarea rows="3" placeholder="Reagerar jag på något nu eller väcker det något från förr?"></textarea>
   </div>
 
 </div>
 
 
+<script>
+const toggles = document.querySelectorAll(".trigger-toggle");
+
+toggles.forEach(toggle => {
+
+  toggle.addEventListener("click", () => {
+
+    const content = toggle.nextElementSibling;
+
+    if(content.style.display === "block"){
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+
+  });
+
+});</script>
 
 </body>

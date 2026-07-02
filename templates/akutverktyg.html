@@ -1,0 +1,111 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Akutverktyg</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="icon" type="image/png"
+    href="{{ url_for('static', filename='favicon.png') }}">
+    <a href="/" class="back-link">← Tillbaka till hubben</a>
+</head>
+
+<body>
+  <h1>Akutverktyg</h1>
+
+  <p>
+Akutverktyg hjälper dig i stunden när känslorna blir starka, tankarna snurrar, du fastnar i överanalyserande eller blir triggad. 
+Det här är verktyg som kan hjälpa dig att landa när det känns som att allt händer på en gång.
+Olika situationer och känslor kan behöva olika verktyg. Det som hjälper en gång kanske inte hjälper nästa gång, och det är helt okej.<br><br>
+
+För att lättare kunna använda verktygen när du verkligen behöver dem rekommenderar jag att du övar på dem även när du inte befinner dig i en akut situation. 
+Du kan öva medan du duschar, diskar, promenerar eller pratar med någon.
+
+När du använder verktygen regelbundet lär sig både nervsystemet och det undermedvetna att känna igen dem.<br>
+Då blir det lättare att komma ihåg och använda dem nästa gång du behöver stöd i en svår stund.
+</p>
+<div class="tool-row">
+  <div class="card">
+   <h3><strong>T.I.P.P</strong> - Dbt färdigthet</h3>
+   <p><strong>T.I.P.P</strong> handlar om att snabbt förändra ett extremt känslomässigt påslag genom att påverkar kroppens kemi.<br>
+    <strong>T.I.P.P</strong> hjälper dig att lugna ditt nervsystem, genom exempelvis kallvatten i ansiktet<br>
+    kan du sänka din puls och det hjälper dig att reglera din känsla snabbt.<br><br>
+
+<Strong>T</Strong> - Tempratursänkning i ansiktet med hjälp av kallt vatten<br>
+<Strong>I</Strong> - Intensiv träning<br>
+<strong>P</strong> - Påverkar kroppen genom långsammare andning?<br>
+<strong>P</strong> - Påverkar kroppen genom avslappning</p>
+
+
+</div>
+<div class="card">
+<h3>5-4-3-2-1- grounding</h3>
+<p>Se dig omkring, kan du hitta:<br>
+<strong>5 saker du kan ser<br>
+4 saker du kan känna<br>
+3 saker du kan höra<br>
+2 saker du kan lukta<br>
+1 saker du kan smaka<br>
+</strong>
+<br>
+Ta god tid på dig. Du behöver inte hitta allt direkt.<br>
+Syftet är att rikta uppmärksamheten mot det som finns här och nu.
+</p>
+</div>
+</div>
+
+<div class="card">
+<h3>Benämn känslan</h3>
+<p>
+När känslorna blir starka är det lätt att fastna i tankarna eller försöka trycka undan det som känns. <br>
+Att benämna känslan hjälper hjärnan att förstå vad som händer och kan minska intensiteten i det du upplever. <br>
+Försök att sätta ord på känslan utan att döma den. <br>
+Du behöver inte förändra känslan eller göra något åt den just nu, bara lägga märke till att den finns där.<br><br>
+
+Har du identifierat vilken känsla som är starkast just nu?<br>
+Om du vill utforska känslan djupare, förstå vad den försöker berätta och få stöd i hur du kan hantera den, kan du använda känslotrackern.<br><br>
+</p>
+<a href="/kanslotracker" class="main-button">
+Öppna känslotrackern
+</a>
+</div>
+
+
+<div class="card">
+<h3>Självvalidering</h3>
+<P>Självvalidering handlar om att erkänna och förstå det du känner utan att döma dig själv. <br>
+  Du behöver inte tycka om känslan eller hålla med om allt du tänker för att få möta dig själv med förståelse</P>
+<Li>Det är okej att känna så här.</Li>
+<li>Mina känslor berättar något för mig.</li>
+<li>Jag behöver inte lösa allt just nu.</li>
+<li>Det jag känner är verkligt för mig.</li>
+<li>Jag får ta plats med mina behov och känslor.</li>
+</ul><br><br>
+
+
+<label for="friend">
+  Hade du varit lika hård mot din vän i samma situation?
+</label>
+<div class="radio-group">
+  <label>
+    <input type="radio" name="friend" value="Ja">
+    Ja
+  </label>
+  <label>
+    <input type="radio" name="friend" value="Kanske">
+    Kanske
+  </label>
+  <label>
+    <input type="radio" name="friend" value="Nej">
+    Nej
+  </label>
+
+</div>
+
+<label for="reflektion">
+  Vad skulle du säga till en vän som kände så här?
+</label><br>
+<div class="radio-group">
+<textarea id="reflektion" rows="5" placeholder="Det är okej..."></textarea>
+</div>
+<p>Läs det du skrev som om någon du tycker om hade sagt det till dig.</p>

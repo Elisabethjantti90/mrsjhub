@@ -27,10 +27,20 @@ def vad_hander():
 def hur_hjalper():
     return render_template("hur_hjalper.html")
 
+@app.route("/akutverktyg")
+def akutverktyg():
+    return render_template("akutverktyg.html")
+
     # nervsystemscheck
 @app.route("/nervsystem")
 def nervsystem():
     return render_template("nervsystem.html")
+
+@app.route("/triggers")
+def triggers():
+    return render_template("triggers.html")
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
